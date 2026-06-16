@@ -10,7 +10,7 @@
 <style>
 @font-face {
   font-family: 'TearsFond';
-  src: url('tearsfont-1_0.otf') format('opentype');
+  src: url('https://chickchick5.github.io/HIGH-CLASS-LOUNGE.github.io/tearsfont-1_0.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,7 +23,12 @@
   --edit-bg:rgba(201,168,76,.12);--edit-border:rgba(201,168,76,.5);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'TearsFond','Noto Serif TC','Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'TearsFond','Noto Serif TC','Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden;cursor:none}
+a,button,[onclick]{cursor:none}
+
+/* Gold cursor */
+#gold-cursor{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);will-change:left,top}
+#gold-cursor svg{display:block;filter:drop-shadow(0 0 5px rgba(201,168,76,.8))}
 
 #stars{position:fixed;inset:0;pointer-events:none;z-index:0}
 .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle 3s ease-in-out infinite}
@@ -222,7 +227,7 @@ footer{border-top:.5px solid rgba(201,168,76,.1);text-align:center;padding:1.4re
 
   <nav>
     <button class="nav-link active" onclick="showPage('rules',this)">House Rules</button>
-    <button class="nav-link" onclick="showPage('staff',this)">Staff</button>
+    <button class="nav-link" onclick="showPage('staff',this)">Our Staff</button>
     <button class="nav-link" onclick="showPage('menu',this)">Menu</button>
     <button class="nav-link" onclick="showPage('gallery',this)">Gallery</button>
     <button class="nav-link" onclick="showPage('events',this)">Events</button>
@@ -301,9 +306,9 @@ footer{border-top:.5px solid rgba(201,168,76,.1);text-align:center;padding:1.4re
       </div>
     </div>
 
-    <!-- Staff -->
+    <!-- Our Staff -->
     <div class="page" id="page-staff">
-      <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-label">STAFF</div><div class="div-gem"></div><div class="div-line"></div></div>
+      <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-label">OUR STAFF</div><div class="div-gem"></div><div class="div-line"></div></div>
 
       <!-- 管理層 -->
       <div class="staff-section" id="sec-mgmt">
@@ -1100,6 +1105,28 @@ function delEvent(btn){if(confirm('確定刪除此場次？'))btn.closest('.even
   <div id="lightbox-caption"></div>
   <div id="lightbox-counter"></div>
 </div>
+
+<div id="gold-cursor">
+  <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="10,1 19,10 10,19 1,10" fill="none" stroke="#c9a84c" stroke-width="1.2"/>
+    <polygon points="10,5 15,10 10,15 5,10" fill="#c9a84c" opacity="0.85"/>
+  </svg>
+</div>
+
+<script>
+// Gold cursor follow
+(function(){
+  const el = document.getElementById('gold-cursor');
+  let mx=window.innerWidth/2, my=window.innerHeight/2;
+  document.addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    el.style.left=mx+'px';
+    el.style.top=my+'px';
+  });
+  document.addEventListener('mouseleave',()=>{ el.style.opacity='0'; });
+  document.addEventListener('mouseenter',()=>{ el.style.opacity='1'; });
+})();
+</script>
 
 </body>
 </html>
