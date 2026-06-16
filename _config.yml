@@ -1,0 +1,6 @@
+include:
+  - tearsfont-1_0.otf
+
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"
